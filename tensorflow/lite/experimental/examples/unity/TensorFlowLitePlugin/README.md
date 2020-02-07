@@ -19,5 +19,16 @@ bazel build -c opt --cxxopt=--std=c++11 --config=android_arm \
   //tensorflow/lite/c:tensorflowlite_c
 ```
 
+
+Error: `'@local_config_cc//:toolchain' does not contain a toolchain for cpu 'arm64-v8a'`
+
+
+Try: ` --fat_apk_cpu=arm64-v8a`
+
+(ref: [https://github.com/tensorflow/tensorflow/issues/9060](https://github.com/tensorflow/tensorflow/issues/9060))
+```sh
+bazel build -c opt --cxxopt=--std=c++11 --fat_apk_cpu=arm64-v8a //tensorflow/lite/c:tensorflowlite_c --verbose_failures
+```
+
 If you encounter issues with native plugin discovery on Mac ("Darwin")
 platforms, try renaming `libtensorflowlite_c.dylib` to `tensorflowlite_c.bundle`.
